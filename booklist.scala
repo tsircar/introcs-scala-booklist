@@ -11,39 +11,69 @@ case class Book(title : String, author : String, year : Int)
 
 class BookList {
    var list = ListBuffer[Book]()
+    
 
    def addBook(book : Book) : Unit = {
+           list += book
+       }
+       
+     
       // write code to add the book to 'list'.
       // hint: Use the list add (+=) method
-   }
+   
 
    def getNumberOfBooks() : Int = list.length
       // instructor has done this for you
       // using it for testing purposes
 
    def printList() : Unit = {
+     
+  list.foreach(println)
+       
       // write code to printList()
       // you should also show how to use the method in your main
    }
 
    def getTitlesByAuthor(author : String) : ListBuffer[String] = {
-      val byAuthorList = ListBuffer[String]()
-      // return a list of all titles that are written by author
-
-
-      byAuthorList
+     val byAuthorList = ListBuffer[String]()
+       
+     for (i <- 0 until list.size) {
+         if(list(i).author.equals(author)) {
+             byAuthorList += list(i).title
+         }
+     }
+     
+     byAuthorList
    }
+       
+ 
 
    def getTitlesContaining(substring : String) : ListBuffer[String] = {
       val titles = ListBuffer[String]()
+       for (i <- 0 until list.size) {
+           if (list(i).title.contains(substring)) {
+               titles+= list(i).title
+               
+           }
+       }
       // return a list of all titles that contain a substring
 
       titles
    }
 
    def getBooksBetweenYears(firstYear : Int, lastYear : Int) : ListBuffer[Book] = {
-     
+   
       val betweenYearList = ListBuffer[Book]()
+       for (i <- 0 until list.size){
+           if (list(i).title.contains((firstYear) until (lastYear))) {
+               betweenYearList+= list(i)
+           }
+       }
+               
+       
+               
+       
+       
       // get all books between two years
 
 
@@ -72,3 +102,4 @@ class BookList {
       books.list foreach { n => list += n }
    }
 }
+               
